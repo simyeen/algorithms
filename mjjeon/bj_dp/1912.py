@@ -9,4 +9,4 @@ D = [0] * n
 for i in range(n):
     D[i] = max(N[i], D[i-1] + N[i])
     
-print(max(D))
+print(max(D)) 
