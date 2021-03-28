@@ -1,6 +1,4 @@
 # n = int(input())
-
-
 # cnt = 0
 
 # for hours in range(n+1) : 
