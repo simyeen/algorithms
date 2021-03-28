@@ -27,7 +27,7 @@
 #     elif arr[i] == 'D' :
 #         if(goal[0] == n):
 #             continue
-#         else :
+#         else : 
 #             goal[0] +=1
             
 
