@@ -18,9 +18,10 @@ def turn_left():
     return (d+3)%4
 
 def check(x,y):
+    print('check in ', x , y)
     global d
     global result
-    
+
     cnt = 0 
     for i in range(4):
         nx = x + dx[i]
