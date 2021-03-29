@@ -1,5 +1,12 @@
 n, m = map(int, input().split())
 
+# graph = [[0]*m for i in range(n)]
+# for i in range(n):
+#     graph[i] = list(map(int, input().split()))
+
+# print(graph)
+
+
 graph = []
 for i in range(n):
     graph.append(list(map(int,input())))
@@ -17,6 +24,7 @@ def dfs(x, y) :
         dfs(x, y+1)
         return True
     return False
+
 
 result = 0
 for i in range (n) :
