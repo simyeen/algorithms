@@ -9,7 +9,11 @@ def setting(data):
 
 result = sorted(arr, key = setting)
 
-ans = []
-for i in range(n) :
-    ans.append(result[i][0])
-print(*ans)
+# ans = []
+# for i in range(n) :
+#     ans.append(result[i][0])
+# print(*ans)
+
+
+for string in result : 
+    print(string[0], end= " ")
