@@ -9,4 +9,4 @@ for i in range(n) :
 arr = sorted(arr, key = lambda student: student[1])
 
 for student in arr :
-    print(student[0], end = '')
+    print(student[0], end = ' ')
