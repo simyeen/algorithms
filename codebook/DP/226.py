@@ -7,7 +7,6 @@ for i in range(n):
     arr.append(int(input()))
     d[arr[i]] = 1    
 
-
 for i in range(1, m+1):
     temp = []
 
