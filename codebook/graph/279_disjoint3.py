@@ -18,9 +18,16 @@ parent = [0]*(v+1)
 for i in range(1, v+1):
     parent[i] = i
 
+cycle = False
+
 for i in range(e):
     a, b = map(int, input().split())
-    union_parent(parent, a,b)
+    if find_parent(parent, a) == find_parent(parent, b):
+        cycle = True
+        print('cycle 발생')
+        exit()
+    else :
+        union_parent(parent, a,b)
 
 for i in range(1, v+1):
     print(find_parent(parent, i), end= '')
