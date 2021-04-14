@@ -22,15 +22,12 @@ for _ in range(m):
 
 edges.sort()
 
-cnt = 0 
+max_cost = 0
 for edge in edges:
     cost, a, b = edge
     if find_parent(parent, a) != find_parent(parent, b):
         union_parent(parent, a, b)
         result += cost
-    elif find_parent(parent, a) == find_parent(parent, b): 
-        continue
+        max_cost = cost
 
-max_cost = edges[-1][0]
-
-print(result-cost)
+print(result-max_cost)
