@@ -1,17 +1,12 @@
 data = input()
 
-arr = [0]*2
+ans= [0]*2
 
 first = int(data[0])
+for i in range(1, len(data)-1):
+    num = int(data[i])
+    if first == num:
+        continue        
 
-for i in range(1, len(data)):
-    if i == len(data):
-        arr[first] += 1
-
-    if first == int(data[i]):
-        continue
-    else :
-        arr[first] += 1
-        first = int(data[i])
         
-print(arr)    
+print(ans)    
