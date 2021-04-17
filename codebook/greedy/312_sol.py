@@ -1,10 +1,10 @@
 data = input()
 
 result = int(data[0])
-for i in range(1, len(data)):
-    num = int(data[i])
-    if num <= 1 or result <= 1:
-        result += num
+for i in data[1:]:
+    now = int(i)
+    if result <= 1 or now <= 1:
+        result += now
     else :
-        result *= num
+        result *= now
 print(result)
