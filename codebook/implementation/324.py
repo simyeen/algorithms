@@ -7,4 +7,5 @@ data = input()
 cnt = []
 for i in range(1, (len(data)//2)+1, i):
     target = data[:i]
-    
+
+# 다시풀기!! 
