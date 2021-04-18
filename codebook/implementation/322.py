@@ -16,3 +16,5 @@ for i in range(len(alpha)):
 alpha.append(str(number))
 
 print(''.join(alpha))
+
+# 다음에는 ord말고 isalpha함수 이용하기
