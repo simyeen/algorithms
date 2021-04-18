@@ -1,5 +1,3 @@
-def turn_left():
-    return (direction+3) % 4
 
 row, col = map(int, input().split())
 
@@ -14,8 +12,13 @@ for i in range (row):
 dr = [-1, 0, 1, 0]
 dc = [0, -1, 0, 1]
 
+def turn_left():
+    global direction    
+    direction = (direction+3)%4
+
+
 turn_time = 0
-cnt = 0
+cnt = 1
 while True:
     turn_left()
     nr = r + dr[direction]
@@ -27,17 +30,30 @@ while True:
         c = nc
         cnt += 1
         turn_time = 0
+        continue
+
     else :
         turn_time += 1
-        if turn_time == 4:
-            if d[nr][nc] == 1:
-                break
-            else:
-                r = r + dr[(direction+2)%4]
-                c = c + dc[((direction+2)%4)]
-                turn_time = 0
+    
+    if turn_time == 4:
+        nr = r - dr[direction]    
+        nc = c - dc[direction]   
+
+        if arr[nr][nc] == 1:
+            break
+        else :
+            r = nr
+            c = nc
+        turn_time = 0
 
 print(cnt)
+
+
+
+
+
+
+# 2번째 self 코드 실패! 
 
 # def turn_left():
 #     return (direction+3) % 4
