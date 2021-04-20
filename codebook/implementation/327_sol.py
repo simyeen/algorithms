@@ -10,7 +10,7 @@ for _ in range(k):
 l = int(input())
 for _ in range(l):
     x, c = input().split()
-    info.append(int(x), c)
+    info.append((int(x), c))
 
 dx = [0,1,0,-1]
 dy = [1,0,-1,0]
@@ -32,15 +32,16 @@ def simulate():
     while True:
         nx = x + dx[direction]
         ny = y + dy[direction]
-        if 1 <= nx <= n and 1 <= ny <= n and data[nx][ny] != 2:
+        if 1 <= nx and nx <= n and 1 <= ny and ny <= n and data[nx][ny] != 2:
             if data[nx][ny] == 0:
                 data[x][y] = 2
                 q.append((nx, ny))
                 px, py = q.pop(0)
+                data[px][py] = 0
             if data[nx][ny] == 1:
                 data[nx][ny] = 2
                 q.append((nx,ny))
-        else :
+        else : 
             time += 1
             break
         x, y = nx, ny
@@ -51,4 +52,6 @@ def simulate():
         return time
 
 print(simulate())
+
+
 
