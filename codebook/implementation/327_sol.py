@@ -51,6 +51,7 @@ def simulate():
             index += 1
         return time
 
+test = 1
 print(simulate())
 
 
