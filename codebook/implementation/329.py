@@ -5,7 +5,7 @@ result = []
 build_frame = []
 for i in range(8):
     x, y, a, b = map(int, input().split())
-    x, y = n-y, x
+    x, y = y, x
     build_frame.append([x,y,a,b])
     
 
