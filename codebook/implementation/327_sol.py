@@ -51,7 +51,6 @@ def simulate():
             index += 1
     return time
 
-print(data)
 print(simulate())
 
 
