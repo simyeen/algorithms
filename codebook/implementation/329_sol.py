@@ -6,11 +6,11 @@ def possible(answer):
                 continue
             return False
         elif stuff == 1:
-            if [x, y-1, 0] in answer or [x+1, y-1, 0] in answer or ([x-1, y, 1] in answer and [x+1, y, 1] in answer):
+            if [x, y-1, 0]1 in answer or [x+1, y-1, 0] in answer or ([x-1, y, 1] in answer and [x+1, y, 1] in answer):
                 continue
             return False
         return True
-
+1
 def solution(n, build_frame):
     answer = []
     for frame in build_frame:

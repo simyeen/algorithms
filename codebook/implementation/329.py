@@ -43,19 +43,21 @@ def delete(frame):
     nr2, nc2 = nr + dr[kind], nc + dc[kind]
     check1 = data[nr + dr[1]][nc + dc[1]]
     check2 = data[nr - dr[1]][nc - dc[1]]
-    
+    check3 = data[r + dr[0]][c + dc[0]]
+    check4 = data[nr + dr[0]][nc + dr[0]]
+
     if kind == 0: # 기둥삭제
         if data[r][c] == 0 and data[nr2][nc2] != 0: # 기둥위에 기둥이 존재할 시,
             data[r][c] = 2
             result.remove([c, n-r, kind])
-        if check1 != 2 and check2 !=2 :
+        if check1 == 2 and check2 ==2 : # 기둥위 양 옆이 
             data[r][c] = 2
             result.remove([c, n-r, kind])
         print('기둥을 삭제할 수 없는 자리입니다.')
         return 0
 
     elif kind == 1:
-        if data[r][c] == 1
+        if data[]
 
 def solution():
     
