@@ -30,3 +30,5 @@ def bfs(r,c):
     return arr[row-1][col-1]
 
 print(bfs(0,0))
+
+
