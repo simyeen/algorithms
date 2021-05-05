@@ -38,3 +38,13 @@ print(N)
 0 0 0
 3 0 0
 1 2 2 
+
+====================
+351번 input
+
+5
+X S X X T 
+T X S X X 
+X X X X X
+X T X X X 
+X X T X X 
