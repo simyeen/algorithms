@@ -21,10 +21,7 @@ def get_operator(a, op, b):
     elif op == 1:
         return a - b
     elif op == 3:
-        if a < 0:
-            return (-a) // b
-        else:
-            return a // b
+        return int(a/b)
     elif op == 2:
         return a * b
 
