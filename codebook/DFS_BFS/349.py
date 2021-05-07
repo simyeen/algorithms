@@ -36,3 +36,5 @@ for op in operator:
 
 print(max_value)
 print(min_value)
+# 중복제거 안해서 시간초과로 실패
+# 잘못된 시간복잡도 계산으로 접근.
