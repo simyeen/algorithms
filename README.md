@@ -9,3 +9,5 @@
 ## MST
 
 ## binary search
+
+## brute_force
