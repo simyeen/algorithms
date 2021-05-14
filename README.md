@@ -1,6 +1,6 @@
 # 알고리즘 
 
-## greedy
+## greedy(using heap)
 
 ## dfs/bfs
 
