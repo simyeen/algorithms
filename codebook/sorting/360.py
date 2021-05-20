@@ -1,27 +1,23 @@
 n = int(input())
 
-house = list(map(int, input().split()))
-house.sort()
+houses = list(map(int, input().split()))
+count = [0] * 200010
 
-count = []
-
-start = house[0]
-last = house[-1]
-
-for i in house:
+for i in houses:
     count[i] += 1
 
-min_value = 1e9
-answer = start
+house_set = set(houses) # 중복 제거 및 sort가능.
 
-ho = set(house)
-for i in range(start, last+1):
-    result = 0
-    for h in ho :
-        result += abs(h-i)*count[ho]
+result = 1e9
+answer = houses[0]
 
-    if min_value > result :
-        min_value = result
-        answer = i
-
+for antena in house_set:
+    total = 0
+    for house in house_set:
+        total += (abs(antena - house)) * count[house]
+    
+    if result > total :
+        result = total
+        answer = antena
+        
 print(answer)
