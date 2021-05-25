@@ -6,7 +6,7 @@
 
 ## 최단경로 찾기(dijkstra, bellman-ford)
 
-## MST(prim)
+## MST(kruskal, prim)
 
 ## binary search
 
