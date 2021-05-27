@@ -6,7 +6,7 @@
 
 ## 최단경로 찾기(dijkstra, bellman-ford)
 
-## MST
+## MST(kruskal, prim)
 
 ## binary search
 
@@ -14,4 +14,4 @@
 
 ## sort
 
-## etc(topology sort..)
+## etc(topology sort, combination)
