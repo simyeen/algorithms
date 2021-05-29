@@ -12,6 +12,6 @@
 
 ## brute_force
 
-## sort
+## sort(merge)
 
 ## etc(topology sort, combination)
