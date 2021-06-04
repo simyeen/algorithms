@@ -8,7 +8,7 @@
 
 ## MST(kruskal, prim)
 
-## binary search
+## binary search(iterator, rescursion)
 
 ## brute_force
 
