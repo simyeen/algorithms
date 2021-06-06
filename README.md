@@ -12,4 +12,6 @@
 
 ## sort(merge)
 
-## etc(topology sort, combination)
+## library(itertools - combination, permutation)
+
+## etc(topology sort)
