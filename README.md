@@ -10,7 +10,7 @@
 
 ## binary search(iterator, rescursion)
 
-## sort(merge)
+## sort(merge, quick, bucket)
 
 ## library(itertools - combination, permutation)
 
