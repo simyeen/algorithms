@@ -8,9 +8,13 @@ def solution(participant, completion):
     participant.sort()
     completion.sort()
     
+    count = [0] * length
+
     for char in participant:
         if char not in completion:
             return char
+
+
 
     return answer
 
