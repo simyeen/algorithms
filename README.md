@@ -2,16 +2,16 @@
 
 ## greedy(using heap)
 
-## dfs/bfs
+## 완전탐색 (brute_force, dfs/bfs)
 
 ## 최단경로 찾기(dijkstra, bellman-ford)
 
 ## MST(kruskal, prim)
 
-## binary search
+## binary search(iterator, rescursion)
 
-## brute_force
+## sort(merge, quick, bucket)
 
-## sort(merge)
+## library(itertools - combination, permutation)
 
-## etc(topology sort, combination)
+## etc(topology sort)
