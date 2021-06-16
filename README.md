@@ -12,6 +12,6 @@
 
 ## sort(merge, quick, bucket)
 
-## library(itertools - combination, permutation)
+## library(itertools - combination, permutation, project)
 
 ## etc(topology sort)
