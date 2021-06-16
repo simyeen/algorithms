@@ -7,15 +7,19 @@ def solution(participant, completion):
     length = len(participant)
     participant.sort()
     completion.sort()
+
+    check = [False] * length
+
+    for char in completion:
+        for i in range(length):
+            if check[i] == False :
+                if participant[i] == char:
+                    check[i] = True
+
+    for i in range(len(check)):
+        if check[i] == False:
+            answer = participant[i]
     
-    count = [0] * length
-
-    for char in participant:
-        if char not in completion:
-            return char
-
-
-
     return answer
 
 print(solution(participant, completion))
