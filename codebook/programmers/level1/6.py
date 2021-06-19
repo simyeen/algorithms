@@ -1,18 +1,19 @@
 from itertools import combinations
 
 
+nums = [3, 3, 3, 2, 2, 4]
 
 def solution(nums):
     answer = 0
 
-    candidates = set(combinations(nums, len(nums)//2))
+    max_value = len(nums) // 2
+    target_len = len(set(nums))
 
-    max_value = -1e9
-    for pokmons in candidates :
-        target = len(set(pokmons))
-        max_value = max(max_value, target)
-    
-    answer = max_value
+    if target_len >= max_value:
+        answer = max_value
+    else :
+        answer = target_len
+
     return answer
 
 
