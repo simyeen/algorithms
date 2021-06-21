@@ -1,6 +1,6 @@
-n = 3
-lost = [3]
-reserve = [1]
+n = 5
+lost = [1,2,4,5]
+reserve = [3]
 
 def solution(n, lost, reserve):
     answer = 0
@@ -12,9 +12,9 @@ def solution(n, lost, reserve):
         check[lo] = False
         for re in reserve:
             if lo == re:
+                check[re] = True
                 reserve.remove(re)
-                
-    print(check)
+
     for re in reserve:
         if re == 1:
             check[re+1] = True
@@ -26,7 +26,6 @@ def solution(n, lost, reserve):
             else :
                 check[re+1] = True
 
-    print(check)
     for i in check:
         if i == True:
             answer += 1
