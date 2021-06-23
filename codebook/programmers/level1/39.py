@@ -1,4 +1,3 @@
-from typing import Sized
 
 
 def solution(left, right):
