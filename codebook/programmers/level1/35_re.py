@@ -1,29 +1,17 @@
+import re
+
 def solution(dartResult):
-    answer = 0
-    d = dartResult
-    for i in range(len(d)):
+    bonus = {'S' : 1, 'D' : 2, 'T' : 3}
+    option = {'' : 1, '*' : 2, '#' : -1}
+
+    p = re.compile('(\d+)([SDT])([*#]?)')
+    dart = p.findall(dartResult)
+
+    for i in range(len(dart)):
+        if dart[i][2] == '*' and i > 0:
+            dart[i-1] *= 2
+        dart[i] = int(dart[i][0]) ** bonus[dart[i][1]] * option[dart[i][2]]
         
-        if d[i]== '0' : continue
-
-        if d[i].isdigit() :
-            if d[i+1].isdigit():
-                tmp = 10
-            tmp = int(d[i])
-            continue
-
-        elif d[i] == 'S':
-            answer += tmp
-        elif d[i] == 'D':
-            tmp **= 2
-            answer += tmp
-        elif d[i] == 'T':
-            tmp **= 3
-            answer += tmp
-        elif d[i] == '*':
-            answer *= 2
-        elif d[i] == '#':
-            answer = -answer
-        print(answer)
-    return answer
-
-print(solution("1D2S#10S"))
+    return sum(dart)
+    
+print(solution("1D 2S# 10S"))
