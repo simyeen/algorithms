@@ -8,8 +8,7 @@ def solution(scoville, K):
         heapq.heappush(q, i)
     
     while True:
-        print(q)
-        if len(q) == 1 : return -1 
+        if not q or (len(q) == 1 and q[0] < K) : return -1 
 
         if q and q[0] >= K : return answer
 
@@ -18,6 +17,3 @@ def solution(scoville, K):
             second = heapq.heappop(q)
             heapq.heappush(q,(first + second*2))
             answer += 1
-
-
-print(solution([1, 2, 3, 9, 10, 12], 7))
