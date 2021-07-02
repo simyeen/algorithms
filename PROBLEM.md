@@ -1,7 +1,3 @@
-# 프로그래머스
-
----
-
 # Level 1
 
 - 소문자 - 대문자 변경
@@ -21,7 +17,21 @@ ex) [https://programmers.co.kr/learn/courses/30/lessons/72410/solution_groups?la
 
 - ** 리스트에서 순서 안바뀌고 중복 제거하기. **
   인덱스값 초과할 때 오류나는 것들 인덱스 슬라이싱 잘 쓰면 범위넘어서도 오류안뜬다!
-  [https://programmers.co.kr/learn/courses/30/lessons/12906/solution_groups?language=python3](https://programmers.co.kr/learn/courses/30/lessons/12906/solution_groups?language=python3)
+
+```python
+
+def no_continuous(s):
+    a = []
+    for i in s:
+        if a[-1:] == [i]: continue # 제일 마지막인자로만 이루어진 리스트 생성 후 비교
+        a.append(i)
+    return a
+
+print( no_continuous( "133303" ))
+```
+
+      **이때 [-1:]의 자료형은 list라서 [i]로 비교해야한다. [-1]의 자료형은 str이므로 i와 비교해야한다.**
+
 - index slicing에서 del a[4:10]하면 4에서 10까지 삭제됨.
 
 - 문자열내에서 .count함수 사용하기
