@@ -15,11 +15,16 @@
 ex) [https://programmers.co.kr/learn/courses/30/lessons/72410/solution_groups?language=python3&type=all](https://programmers.co.kr/learn/courses/30/lessons/72410/solution_groups?language=python3&type=all)
 
 - 행렬의 덧셈 : zip과 numpy를 다뤄보자.
+<<<<<<< HEAD
   [https://programmers.co.kr/learn/courses/30/lessons/12950/solution_groups?language=python3](https://programmers.co.kr/learn/courses/30/lessons/12950/solution_groups?language=python3)
+=======
+[https://programmers.co.kr/learn/courses/30/lessons/12950/solution_groups?language=python3](https://programmers.co.kr/learn/courses/30/lessons/12950/solution_groups?language=python3)
+>>>>>>> 16b85a96e571c7a440de49c858cf49d0fe3d29f2
 
 - join 함수 "이 값을 넣어서 문자열로 합치기".join(arr)
 
 - ** 리스트에서 순서 안바뀌고 중복 제거하기. **
+<<<<<<< HEAD
   인덱스값 초과할 때 오류나는 것들 인덱스 슬라이싱 잘 쓰면 범위넘어서도 오류안뜬다!
   [https://programmers.co.kr/learn/courses/30/lessons/12906/solution_groups?language=python3](https://programmers.co.kr/learn/courses/30/lessons/12906/solution_groups?language=python3)
 - index slicing에서 del a[4:10]하면 4에서 10까지 삭제됨.
@@ -31,6 +36,19 @@ ex) [https://programmers.co.kr/learn/courses/30/lessons/72410/solution_groups?la
 
   n진법 ⇒ 10진법 : int(문자열, base) 이때 주의 할 점은 꼭 안에 문자열로 넣어주어야 convert가 된다.
   **bin(), oct(), hex() 으로 2, 8, 16진수 변환가능.**
+=======
+인덱스값 초과할 때 오류나는 것들 인덱스 슬라이싱 잘 쓰면 범위넘어서도 오류안뜬다!
+[https://programmers.co.kr/learn/courses/30/lessons/12906/solution_groups?language=python3](https://programmers.co.kr/learn/courses/30/lessons/12906/solution_groups?language=python3)
+- index slicing에서 del a[4:10]하면 4에서 10까지 삭제됨.
+
+- 문자열내에서 .count함수 사용하기
+[https://programmers.co.kr/learn/courses/30/lessons/12916/solution_groups?language=python3](https://programmers.co.kr/learn/courses/30/lessons/12916/solution_groups?language=python3)
+
+- 10진법 ⇒ n진법 : 나온 나머지들을 $n^0$부터 차례로 $n^n$까지 써주면 된다.(몫이 0이 될때 까지)
+
+    n진법 ⇒ 10진법 : int(문자열, base) 이때 주의 할 점은 꼭 안에 문자열로 넣어주어야 convert가 된다.
+    **bin(), oct(), hex() 으로 2, 8, 16진수 변환가능.**
+>>>>>>> 16b85a96e571c7a440de49c858cf49d0fe3d29f2
 
 ```
 def solution(n):
@@ -52,7 +70,11 @@ return answer
 ```python
 def solution(left, right):
     answer = 0
+<<<<<<< HEAD
     for i in range(left,right+1):
+=======
+    for i in range(left,right+1): 
+>>>>>>> 16b85a96e571c7a440de49c858cf49d0fe3d29f2
         if int(i**0.5)==i**0.5: # 루트로 소수점 날려버린게 같으면 약수 개수가 홀수이다!!
             answer -= i
         else:
@@ -66,7 +88,11 @@ def solution(left, right):
 def nextSqure(n):
     sqrt = n ** (1/2)
 
+<<<<<<< HEAD
     if sqrt % 1 == 0: # 정수면 sqrt % 1 => 0.0이 나오고, 아니면 소수점이 나온다.
+=======
+    if sqrt % 1 == 0: # 정수면 sqrt % 1 => 0.0이 나오고, 아니면 소수점이 나온다. 
+>>>>>>> 16b85a96e571c7a440de49c858cf49d0fe3d29f2
         return (sqrt + 1) ** 2
     return 'no'
 ```
@@ -76,9 +102,15 @@ def nextSqure(n):
 ```python
 def solution(n, arr1, arr2):
     answer = []
+<<<<<<< HEAD
     for i,j in zip(arr1,arr2):
         a12 = str(bin(i|j)[2:]) # 비트 연산자 '|'를 활용
         a12=a12.rjust(n,'0') # rjust, ljust를 사용해서 원하는 길이만큼 조정하기
+=======
+    for i,j in zip(arr1,arr2): 
+        a12 = str(bin(i|j)[2:]) # 비트 연산자 '|'를 활용
+        a12=a12.rjust(n,'0') # rjust, ljust를 사용해서 원하는 길이만큼 조정하기 
+>>>>>>> 16b85a96e571c7a440de49c858cf49d0fe3d29f2
         a12=a12.replace('1','#') # 힘들게 slicing말고 replace를 사용해보자.
         a12=a12.replace('0',' ')
         answer.append(a12)
@@ -90,21 +122,36 @@ def solution(n, arr1, arr2):
 # Level 2
 
 - enumerate : 열거하다라는 뜻으로 보통 for in range에 같이 쓴다. 이걸 사용해서 편하게 index를 같이 리턴 할 수 있다.  
+<<<<<<< HEAD
   **(예시) queue = [(i,p) for i,p in enumerate(priorities)]
   queue = [ i for i in enumerate(priorities)]와 동일한 결과이다. (값 앞에 index가 순서대로 붙음.)**
 
       [https://programmers.co.kr/learn/courses/30/lessons/42587/solution_groups?language=python3](https://programmers.co.kr/learn/courses/30/lessons/42587/solution_groups?language=python3)
+=======
+**(예시) queue = [(i,p) for i,p in enumerate(priorities)]
+queue = [ i for i in enumerate(priorities)]와 동일한 결과이다. (값 앞에 index가 순서대로 붙음.)**
+
+    [https://programmers.co.kr/learn/courses/30/lessons/42587/solution_groups?language=python3](https://programmers.co.kr/learn/courses/30/lessons/42587/solution_groups?language=python3)
+>>>>>>> 16b85a96e571c7a440de49c858cf49d0fe3d29f2
 
 - !! 아래처럼 하면 동일한 key에 여러개의 value를 []로 넣어 줄 수있다!
 
 ```python
 def solution(clothes):
 	answer = 0
+<<<<<<< HEAD
 
 	d = dict()
 	for value, key in clothes:
 	    d.setdefault(key, []).append(value)
 
+=======
+	
+	d = dict()
+	for value, key in clothes:
+	    d.setdefault(key, []).append(value)
+	
+>>>>>>> 16b85a96e571c7a440de49c858cf49d0fe3d29f2
 	return d
 ```
 
@@ -130,4 +177,8 @@ def solution(skill, skill_trees):
 ```
 
 - 왼쪽부터 찾을거면 find함수 오른쪽 부터 찾을거면 rfind함수를 사용하자
+<<<<<<< HEAD
   [https://hyunssssss.tistory.com/365](https://hyunssssss.tistory.com/365)
+=======
+[https://hyunssssss.tistory.com/365](https://hyunssssss.tistory.com/365)
+>>>>>>> 16b85a96e571c7a440de49c858cf49d0fe3d29f2
