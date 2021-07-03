@@ -8,7 +8,6 @@ def dij(start,graph,distance):
     heapq.heappush(q,(0,start))
     distance[start] = 0
     while q:
-        print(q)
         dist,now = heapq.heappop(q)
         if distance[now] < dist:
             continue
@@ -19,7 +18,7 @@ def dij(start,graph,distance):
                 heapq.heappush(q,(cost,i[0]))
 
 def solution(N, road, K):
-    
+    answer = 0
     start = 1
     graph = [[] for i in range(N+1)]
     distance = [INF] * (N+1)
@@ -30,6 +29,10 @@ def solution(N, road, K):
         graph[b].append((a,c))
     
     dij(start,graph,distance)
-    print(distance)
+    for i in distance:
+        if i <= K:
+            answer+=1
+    return answer
+
 
 print(solution(5,	[[1,2,1],[2,3,3],[5,2,2],[1,4,2],[5,3,1],[5,4,2]]	,3))

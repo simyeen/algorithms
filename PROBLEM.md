@@ -141,3 +141,72 @@ def solution(skill, skill_trees):
 
 - 왼쪽부터 찾을거면 find함수 오른쪽 부터 찾을거면 rfind함수를 사용하자
   [https://hyunssssss.tistory.com/365](https://hyunssssss.tistory.com/365)
+
+- 구명보트 문제! 굳이 heapq에만 목매이지말고 다시금 문제를 잘 살펴보자
+
+```python
+from collections import deque
+
+def solution(people, limit):
+    result = 0
+    deque_people = deque(sorted(people))
+
+    while deque_people:
+        left = deque_people.popleft() # while문 안에 있으므로 무조건 queue가 차 있음.
+        if not deque_people:
+            return result + 1
+        right = deque_people.pop() # 2번째 pop이므로 이전에 empty검사 필요.
+        if left + right > limit:
+            deque_people.appendleft(left) # 조건에 만족하지 않을때는 다시 push해주기.
+        result += 1
+    return result
+
+people = [70, 50, 80, 50]
+limit = 100
+
+print(solution(people,100))
+```
+
+- 튜플문제
+
+```python
+def solution(s):
+    answer = []
+    **s = s[2:-2]
+    s = s.split("},{")**
+    s.sort(key = len)
+    for i in s:
+        ii = i.split(',')
+        for j in ii:
+            if int(j) not in answer:
+                answer.append(int(j))
+    return answer
+
+
+
+
+📌다른 풀이
+
+정규표현식을 이용한 풀이다.
+
+findall메소드는 정규식과 매치되는 모든 문자열을 리스트로 돌려준다.
+
+**re.findall("\d+", j) 👉 숫자에 해당한다면 리스트로 돌려줌**
+
+
+
+import re
+
+def solution(s):
+    answer = []
+    a = s.split(',{')
+    a.sort(key = len)
+    for j in a:
+        numbers = re.findall("\d+", j)
+        for k in numbers:
+            if int(k) not in answer:
+                answer.append(int(k))
+    return answer
+
+출처 : [https://hazung.tistory.com/103](https://hazung.tistory.com/103)
+```
