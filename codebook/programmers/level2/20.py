@@ -1,27 +1,19 @@
-import heapq
+from collections import deque
 
 def solution(people, limit):
-    answer = 1
-    q = []
-    
-    for i in people:
-        heapq.heappush(q, i)
-    
-    rest = limit
+    ans = 0
+    q = deque(sorted(people))
+
     while q :
-        print(q)
-        peo = heapq.heappop(q)
-        print(rest)
-        rest -= peo
-        print(rest)
-        if rest >= 0:
-            continue
-        elif rest < 0 :
-            heapq.heappush(q, peo)
-            rest = limit 
-            answer += 1
-        
-    return answer
+        left = q.popleft()
+        if not q :
+            return ans +1 
+        right = q.pop()
+        if left + right > limit:
+            deque.appendleft(left)
+        ans += 1
+    return ans
+
 
 people = [70, 50, 80, 50]	
 limit = 100
