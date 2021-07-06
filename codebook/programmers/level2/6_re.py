@@ -16,16 +16,6 @@ def solution(n):
     for i in range(len(n)):
         arr.append((n[i], len(n)-1-i))
     
-    check = [0,3,5,6,7,8,9]
-
-    
-    while True:
-
-        for i in num:
-            if i in check: break
-            else : return answer # 전부다 124로만 이루어진 경우
-        
-        for i in 
 
 
 
