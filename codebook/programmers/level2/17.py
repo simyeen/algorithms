@@ -16,9 +16,7 @@ def solution(numbers):
             target = int(tmp)
             print(target)
         
-            for i in range(2, target-1):
-                if target % i == 0 : break
-            else : answer += 1 
+ 
     
     return answer
 
