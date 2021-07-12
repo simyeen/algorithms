@@ -1,9 +1,18 @@
 from collections import deque
 
 def solution(bridge_length, weight, truck_weights):
-    answer = 0
+    
+    time = bridge_length
+    wait = deque()
+    for i in truck_weights:
+        wait.append(i)
 
-    car = []
+    cnt = 0
+    stack = []
+    while wait:
+        cur = wait.popleft()
+        stack.append(cur)
+        if sum(stack) <= weight:
 
 
 
