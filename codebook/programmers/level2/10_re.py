@@ -1,24 +1,19 @@
-
-
 def solution(name):
     answer = 0
-    
-    cur = ord('A')
-    for i in range(len(name)):
-        
-        target = ord(name[i])-26 if ord(name[i]) > 90 else ord(name[i])
 
-        up = abs(target - cur) 
-        if cur == 'A':
-            down = min(abs(target-cur), abs(target-ord('Z'))+1)
-        else : down = up
-        left = abs(target-ord('A'))+1
-        right = abs(target-ord('Z'))+1
+    target = ['A' for _ in name]
+
+    right, left, up, down = 0, 0, 0, 0
+
+    i = 0
+    for char in name :
+        c = ord(char)
+        t = ord(target[i])
         
-        print(up,down,left,right)
-        answer += min(up,down,right,left)
-        print(answer, name[i])
-        cur = ord(name[i])
+        if c != t and i == 0: # 제일 처음 시작할 때
+            up = 
+
+
     return answer
 
 
