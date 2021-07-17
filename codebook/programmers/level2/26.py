@@ -1,17 +1,16 @@
-from itertools import combinations
 
 def solution(number, k):
     answer = ''
 
-    combi = list(combinations(number, len(number)-k))
-    mylist = []
+    
+    1 1
+    2 2
+    4 4
+    5
+    7 7
+    8
 
-    for c in combi:
-        tmp = ''
-        for i in c :
-            tmp += i
-        mylist.append(int(tmp))
-    answer = str(max(mylist))
+    123456789
 
     return answer
 
