@@ -26,8 +26,8 @@ def solution(str1, str2):
     for key in set2:
         if set2[key] != 0:
             union += set2[key]
-    if union == 0 :
-        return 65536
+
+    if union == 0 : return 65536
     return int((inter/union)*65536)
 
 
