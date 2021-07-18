@@ -6,7 +6,8 @@ def solution(info, query):
         inf.append(i.split(' '))
         q = q.replace(' and ', ' ')
         que.append(q.split(' '))
-    
+        
+    print(inf[0], que[0])
     for qu in que: # 5가지 조건을 가진 쿼리 하나에 대하여
         cnt = 0
         for io in inf: # 주어진 info 5개를 전부 비교한다.
