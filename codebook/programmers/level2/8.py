@@ -3,30 +3,18 @@ from itertools import permutations
 def solution(numbers):
     answer = []
     nums = [str(i) for i in numbers]
-    mylist = [[] for _ in range(10)]
 
-    for i in nums:
-        mylist[int(i[0])].append(int(i))
-    for per in mylist:
-        if len(per) < 2 : 
-            if len(per) == 1 :
-                answer.append(per[0])
-            continue
-        
-        com = list(permutations(per, len(per)))
-        tmplist = []
-        for c in com:
-            tmp = ''
-            for i in c:
-                tmp += str(i)
-            tmplist.append(int(tmp))
-        answer.append(max(tmplist))
-            
-    k = ''
-    for i in range(len(answer)-1, -1, -1) :
-        k += str(answer[i])
+    lenlist = [[] for _ in range(max(numbers)+1)]
+    for num in nums:
+        lenlist[int(num)].append(len(num))
 
-    return k
+    # 맨 앞자리가 같다면 
+    #34 30 3 
+    # 이럴 떄 는 34 3 30 이 된다 => 
+    # 바로 뒷자리가 앞자리 보다 큰애(큰애들도 크기순) | 앞자리 | 앞자리보다 작은애(애내는 크기 순)
+
+
+    return answer
 
 numbers = [3, 30, 34, 5, 9]
 print(solution(numbers))
