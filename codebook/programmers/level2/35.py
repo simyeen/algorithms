@@ -3,7 +3,7 @@ from itertools import combinations
 def solution(number, k):
     answer = ''
     
-    index = list(combinations(range(len(number)),k)
+    index = list(combinations(range(len(number)),k))
     
     max_value = -1e9
     for i in index :
