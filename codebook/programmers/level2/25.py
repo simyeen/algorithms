@@ -1,39 +1,33 @@
 from itertools import combinations
 
+def check_minimal(combi,check_list): # combi의 04 => 013, 014, 045 
+
+    for check in check_list : # check가 하나라도 combi안에 존재할때 아웃
+        cnt = len(check)
+        for c in check:
+            if c in combi: cnt -= 1
+        if cnt == 0 : return False
+    return True
+
 def solution(relation):
     answer = 0
-    cur = 1 
-    record = [i for i in range(len(relation[0]))]
     n = len(relation)
-    check_set = set()
-    
-    while cur <= len(record): 
-        
-        combination = list(combinations(record,cur)) # 1에서 최대 n까지의 조합이다.
-        tmp_list = []
-        for combi in combination: # 4C2 같은 조합 중에 하나    
-            
-            tmp = ''
-            for c in combi: tmp += str(c)
-            for check in check_set: # 최소성 검사
-                if check in tmp: break
-            
-            else :  
-                cmp_set = set()
-                for i in range(n):
-                    tmp = ''
-                    for c in combi: # 1, 2 전부다 더해주기
-                        tmp += str(relation[i][c])
-                    cmp_set.add(tmp)
+    check_list = []
 
-                if len(cmp_set) == n : # 중복없으므로 키 값으로 인정된다.
-                    tmp = ''
-                    for c in combi: tmp += str(c)
-                    tmp_list.append(tmp) # 해당 cur일때  
-                    answer += 1
-        for check in tmp_list: check_set.add(check)
-        cur += 1
-    
+    for i in range(1,len(relation[0])+1):
+        combination = list(combinations(range(len(relation[0])),i))
+        for combi in combination:
+            if check_minimal(combi,check_list) == False: continue
+            tmp_set = set()
+            for i in range(len(relation)):
+                tmp = ''
+                for c in combi: # 0, 1, 2 3개다 같은 곳에 담아줘야함.
+                    tmp += relation[i][c] # r[0][0] + [0][1] + [0][2]
+                tmp_set.add(tmp)
+            if len(tmp_set) == n: # combi가 하나의 키값이 될 때
+                check_list.append(combi)
+                answer += 1
+
     return answer
 
 relations = [["100","ryan","music","2"],["200","apeach","math","4"],["300","tube","computer","3"],["400","con","computer","1"],["500","muzi","music","3"],["600","apeach","music","2"]]
