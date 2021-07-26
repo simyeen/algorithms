@@ -1,16 +1,12 @@
 def solution(prices):
-    answer = [0 for _ in prices]
+    answer = [0] * len(prices)
 
-    for i in range(len(prices)):    
-        tmp = prices[i:] 
-        cnt = 0
-        while len(tmp) != 1:
-            if tmp[0] <= tmp[-1]:
-                cnt += 1
-            tmp.pop()
-                
-        answer[i] = cnt
-        
+    for i in range(len(prices)-1):
+        for j in range(i, len(prices)-1):
+            if prices[i] >prices[j]:
+                break
+            else:
+                answer[i] +=1
     return answer
 
-print(solution([1, 2, 3, 2, 3]))
+print(solution([1, 2, 3, 4, 3,2,5,6]))
