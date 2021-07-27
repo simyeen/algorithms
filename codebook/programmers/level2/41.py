@@ -1,22 +1,25 @@
+import re
+
 def solution(info, query):
     answer = []
 
-    myinfo, myquery = [], []
-    for i in info : myinfo.append(i.split())
-    for q in query : 
-        tmp = q.replace(' and','')  
-        myquery.append(tmp.split())
+    p = re.compile('\D+|\d+')
 
-    for query in myquery:
-        cnt = 0 
-        for info in myinfo:
-            for i in range(len(query)):
-                if i == len(query)-1:
-                    if int(query[i]) <= int(info[i]): cnt+=1
-                if query[i] == '-' : continue
-                if query[i] != info[i] : break
-        answer.append(cnt)        
-            
+    arr = []
+    for i in info:
+        i = i.replace(' ','')
+        #print(re.findall(p,i))
+    
+    for q in query:
+        #q = q.replace(' ','')
+        q = q.replace('and','')
+        print(re.findall(p,q))
+
+    a = 0b11111111
+    print(a)
+    b = 0b10000000
+    print(a^b)
+
     return answer
 
 i = ["java backend junior pizza 150","python frontend senior chicken 210","python frontend senior chicken 150","cpp backend senior pizza 260","java backend junior chicken 80","python backend senior chicken 50"]
