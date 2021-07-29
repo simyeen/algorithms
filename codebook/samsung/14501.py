@@ -20,3 +20,4 @@ print(arr)
 #  1  =>   4     =>    5
 #  i => i + t[i] => i+t[i] + t[i + t[i]]
 # p[i] + p[i+t[i]] + 
+
