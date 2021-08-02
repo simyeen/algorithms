@@ -1,13 +1,3 @@
-# 로봇 청소기
-# r,c 입력받기
-
-# 이동할 수 있으면 이동 => 청소 한 것
-# 현재 위치에서 자신의 방향의 왼쪽부터 검색 => 현재 방향 d를 저장해두기
-# 일단 돌고 청소 안된 공간이면 이동하기
-# 청소 안되면 4방향 전부다 뒤지기
-# cnt == 4 되버리면 그냥 뒤로 빠꾸치기
-# 빠꾸 불가능 하면 종료
-
 import copy
 from collections import deque
 
@@ -21,16 +11,45 @@ ans = 0
 
 data = []
 for _ in range(n): data.append(list(map(int, input().split())))
-clear_data = copy.deepcopy(data)
+cleared_data = copy.deepcopy(data)
 
 def rotate(d):
-    pass
+    return 3 if d == 0 else d-1
 
-while True :
-
+def bfs(x,y):
+    global d
     q = deque()
     q.append((x,y))
-    clear_data[x][y] = 2 # 청소한 곳은 2로 표시
+    cleared_data[x][y] = 2 # 청소한 곳은 2로 표시
 
     while q:
         x, y = q.pop()
+        check_cnt = 0 
+        for _ in range(4):
+            d = rotate(d)
+            nx = x + dx[d]
+            ny = y + dy[d]
+            if 0 <= nx < n and 0 <= ny < m:
+                if data[nx][ny] == 1 or cleared_data[nx][ny] == 2 : # 벽이거나 청소가 되어있는 곳
+                    check_cnt += 1
+                    continue
+                if data[nx][ny] == 0 and cleared_data[nx][ny] == 0 : # 청소가 안되있는 곳.
+                    cleared_data[nx][ny] = 2
+                    q.append((nx,ny)) # 이동하기
+                    break
+        if check_cnt == 4:
+            nx = x - dx[d]
+            ny = y - dy[d]
+            if data[nx][ny] == 0 : 
+                q.append((nx,ny))
+            else : break
+        
+bfs(x,y)
+
+ans = 0
+for i in range(n):
+    for j in range(m):
+        if cleared_data[i][j] == 2: ans +=1
+print(ans)
+
+
