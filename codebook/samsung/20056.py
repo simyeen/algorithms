@@ -1,74 +1,61 @@
-n,M,k = map(int,input().split())
+n = int(input())
+data = [[0 for _ in range(n)]for _ in range(n)]
 
-fireball = []
-for _ in range(M): 
-    x,y,m,s,d = map(int,input().split())
-    fireball.append((x-1,y-1,m,s,d,False))
+k = int(input())
+for _ in range(k): # 사과 초기화하기.
+    x, y = map(int,input().split())
+    data[x-1][y-1] = 1 
 
-data = [[[] for _ in range(n)] for _ in range(n)]
+l = int(input())
+cmds_time, cmds_direction = [], []
+for _ in range(l) : 
+    arr = list(input().split())
+    cmds_time.append(int(arr[0]))
+    cmds_direction.append(arr[1])
 
-dx = [-1,-1,0,1,1,1,0,-1]
-dy = [0,1,1,1,0,-1,-1,-1]
+def move(body):
+    # 헤드를 제외하고 전부다 0으로 초기화
+    x, y = body.pop(0)
+    for i in range(n):
+        for j in range(n):
+            if data[i][j] == 2: 
+                data[x][y] = 0
 
-for ball in fireball:
-    x, y = ball[0], ball[1]
-    data[x][y].append(ball)
 
-def sum_div():  
-    for row in data:
-        for col in row:
-            if len(col) == 0 : continue
-            if len(col) == 1 : 
-                x,y,m,s,d,check = col.pop()
-                data[x][y].append((x,y,m,s,d,False))
-                continue
-            sum_m, sum_s, sum_d, leng = 0, 0, [], len(col)
-            while col:
-                x,y,m,s,d,check = col.pop()
-                sum_m += m
-                sum_s += s
-                sum_d.append(d)
-            m, s= int(sum_m/5), int(sum_s/leng)
-            if m == 0 : continue
+def rotate(direction):
+    if direction == 'L' : return 3 if d == 0 else d - 1 # 반시계방향
+    elif direction == 'D': return 0 if d == 3 else d + 1 # 시계방향
 
-            d_check = 0
-            for d in sum_d:
-                if d % 2 == 0 : d_check += 1 # 짝수이면 +
-                else : d_check -= 1 # 홀수이면 - 
+dx = [-1,0,1,0]
+dy = [0,1,0,-1]
+
+x, y, time = 0, 0, 0
+data[x][y] = 2
+d = 1 # 처음엔 오른쪽으로 이동하니까.
+body = [(0,0)]
+
+while True: 
+    nx, ny = x + dx[d], y + dy[d]
+
+    if not (0<=nx<n and 0<=ny<n): break # 밖으로 삐져 나갈 때
+    if data[nx][ny] == 2 : break # 자신의 몸과 부딪힐 떄
+
+    if data[nx][ny] == 1 : # 사과를 먹을 때 몸 길이가 늘어난다.
+        data[x][y] = 2
+        body.append((nx,ny))
+    else : 
+        move(body)
+        body.append((nx,ny))
+    # 그냥 이동할떄 몸길이 head하나만 으로 줄이기
+    data[nx][ny] = 2
+    x, y = nx, ny 
         
-            if d_check == 4 or d_check == -4 :
-                for d in range(0,7,2):
-                    data[x][y].append((x,y,m,s,d,False))
-            else :
-                for d in range(1,8,2):
-                    data[x][y].append((x,y,m,s,d,False))
+    # 이 위의 과정들은 머리를 먼저 보내고 이동 했을 때
+    time += 1
+    if time in cmds_time: # 이동이 끝난 후에 방향 전환시켜주기
+        index = cmds_time.index(time)
+        direction = cmds_direction[index]
+        d = rotate(direction)
+    
 
-for _ in range(k):    
-    for row in data: # 이동시키기
-        for col in row:
-            if len(col) <= 0: continue
-            for _ in range(len(col)):
-                x,y,m,s,d,check = col.pop()
-                if check == True: 
-                    col.insert(0,(x,y,m,s,d,check))
-                    continue
-                nx = (x + dx[d]*s)%(n) 
-                ny = (y + dy[d]*s)%(n)
-                data[nx][ny].insert(0,(nx,ny,m,s,d,True))    
-    sum_div()
-
-ans = 0
-for row in data:
-    for col in row:
-        if len(col) == 0: continue
-        while col:
-            x,y,m,s,d,check = col.pop()
-            ans += m
-print(ans)
-
-
-# 파이어 볼 초기화 nxn행렬에
-# k번 만큼 실행
-# stack에 m개의 파이어 볼 정보 저장.
-# 0,1는 위치 2는 질량 3는 속력(이동 칸 수) 4는 방향
-
+print(time+1)
