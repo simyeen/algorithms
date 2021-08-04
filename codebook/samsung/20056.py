@@ -1,61 +1,59 @@
-n = int(input())
-data = [[0 for _ in range(n)]for _ in range(n)]
+import copy
 
-k = int(input())
-for _ in range(k): # 사과 초기화하기.
-    x, y = map(int,input().split())
-    data[x-1][y-1] = 1 
+n, m, k = map(int, input().split())
 
-l = int(input())
-cmds_time, cmds_direction = [], []
-for _ in range(l) : 
-    arr = list(input().split())
-    cmds_time.append(int(arr[0]))
-    cmds_direction.append(arr[1])
+start = []
+for _ in range(m) : 
+    x,y,m,s,d = map(int,input().split())
+    start.append(list((x-1,y-1,m,s,d)))
 
-def move(body):
-    # 헤드를 제외하고 전부다 0으로 초기화
-    x, y = body.pop(0)
+dx = [-1,-1,0,1,1,1,0,-1]
+dy = [0,1,1,1,0,-1,-1,-1]
+
+def spread_balls(tmp_list,fireballs):
+    
     for i in range(n):
         for j in range(n):
-            if data[i][j] == 2: 
-                data[x][y] = 0
-
-
-def rotate(direction):
-    if direction == 'L' : return 3 if d == 0 else d - 1 # 반시계방향
-    elif direction == 'D': return 0 if d == 3 else d + 1 # 시계방향
-
-dx = [-1,0,1,0]
-dy = [0,1,0,-1]
-
-x, y, time = 0, 0, 0
-data[x][y] = 2
-d = 1 # 처음엔 오른쪽으로 이동하니까.
-body = [(0,0)]
-
-while True: 
-    nx, ny = x + dx[d], y + dy[d]
-
-    if not (0<=nx<n and 0<=ny<n): break # 밖으로 삐져 나갈 때
-    if data[nx][ny] == 2 : break # 자신의 몸과 부딪힐 떄
-
-    if data[nx][ny] == 1 : # 사과를 먹을 때 몸 길이가 늘어난다.
-        data[x][y] = 2
-        body.append((nx,ny))
-    else : 
-        move(body)
-        body.append((nx,ny))
-    # 그냥 이동할떄 몸길이 head하나만 으로 줄이기
-    data[nx][ny] = 2
-    x, y = nx, ny 
+            if len(tmp_list[i][j]) == 0 : continue
+            if len(tmp_list[i][j]) == 1 : 
+                fireballs.append(tmp_list[i][j][0])
+                continue
         
-    # 이 위의 과정들은 머리를 먼저 보내고 이동 했을 때
-    time += 1
-    if time in cmds_time: # 이동이 끝난 후에 방향 전환시켜주기
-        index = cmds_time.index(time)
-        direction = cmds_direction[index]
-        d = rotate(direction)
-    
+            sum_m, sum_s, check_dlist = 0, 0, []
+            for ball in tmp_list[i][j]:
+                x,y,m,s,d = ball
+                sum_m += m
+                sum_s += s
+                check_dlist.append(d)
 
-print(time+1)
+            sum_m, sum_s = int(sum_m/5), int(sum_s/len(tmp_list[i][j]))
+            if sum_m == 0 : continue # 소멸
+            
+            check_d = 0
+            for check in check_dlist: 
+                if check % 2 == 0 : check_d += 1
+                else : check_d -= 1
+            
+            if abs(check_d) == len(check_dlist):
+                for d in range(0,7,2):
+                    fireballs.append((x,y,sum_m,sum_s,d))
+            else : 
+                for d in range(1,8,2):
+                    fireballs.append((x,y,sum_m,sum_s,d))
+
+fireballs = copy.deepcopy(start)
+for _ in range(k): # k번의 명령 실행
+    tmp_list = [ [[] for _ in range(n)] for _ in range(n)]
+    while fireballs: # 파이이볼 이동시키기
+        x,y,m,s,d = fireballs.pop()
+        nx, ny = (x + dx[d]*s)%n, (y + dy[d]*s)%n
+        tmp_list[nx][ny].append((nx,ny,m,s,d))    
+
+    spread_balls(tmp_list,fireballs) #파이어 볼 2개 이상 합치기
+
+ans = 0 
+for ball in fireballs:
+    x,y,m,s,d = ball
+    ans += m
+
+print(ans)
