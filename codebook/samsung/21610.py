@@ -4,7 +4,7 @@
 # 물복사버그 마법은 대각선에 2이상인거 만큼 증가 
 # 근데 이 경우는 경계 넘어가기x
 # 바구니의 저장된 물의 양이 2이상이면 구름 생기고 물의 양 2감소, 구름이 생기는 칸은 3에서 구름x인 칸?
-import copy
+
 n, m = map(int, input().split())
 
 data, cmds = [], []
@@ -17,9 +17,6 @@ dx = [0,-1,-1,-1,0,1,1,1]
 dy = [-1,-1,0,1,1,1,0,-1]
 
 clouds = [(n-1,0),(n-1,1),(n-2,0),(n-2,1)]
-# cloud를 저장하는 배열이 필요.
-# move시키기
-
 
 def move(clouds,d,s):
     for i in range(len(clouds)):
@@ -40,9 +37,6 @@ def replica(clouds):
             if not(0<=nx<n and 0<=ny<n): continue
             if data[nx][ny] == 0 : continue
             else : data[x][y] += 1
-    # for i in data:
-    #     print(i)
-    # print()
 
 def new_clouds(clouds):
     new_cloud = []
