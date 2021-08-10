@@ -1,52 +1,65 @@
-# 바이러스는 비활성 / 활성 상태
-# 활성 상태 바이러스는 상하좌우로 모든 빈칸으로 동시 복제 => 1초
-# M개의 바이러스를 활성 상태로 변경
-
-# 활성 바이러스는 비활성을 활성시킨다.
-
-# 바이러스 중에 누구누구를 할지 뽑자 
 
 from itertools import combinations
 from collections import deque
 import copy
 
-n, m = map(int, input().split())
-
-data = []
-for _ in range(n): data.append(list(map(int, input().split())))
-
 dx = [-1,0,1,0]
 dy = [0,1,0,-1]
 
-virus_list = []
+n, m = map(int, input().split())
+data = []
+for _ in range(n) : data.append(list(map(int, input().split())))
+
+check = 0
+blocks, virus = [], []
+dist_data = [[' ' for _ in range(n)] for _ in range(n)]
 for i in range(n):
     for j in range(n):
-        if data[i][j] == 2: virus_list.append((i,j))
-
-combination = list(combinations(virus_list,m))
+        if data[i][j] == 2 : 
+            virus.append((i,j))
+            dist_data[i][j] = '*'
+        elif data[i][j] == 1 : 
+            blocks.append((i,j))
+            dist_data[i][j] = '-'
+        else : check += 1
+check += len(virus)
 
 ans = []
+combination = list(combinations(virus, m))
 for combi in combination:
-
-    lab = copy.deepcopy(data) 
     q = deque()
-    for c in combi : 
-        x, y = c
-        dist = 0
-        q.append((x, y, dist))
-        lab[x][y] = '시작'
+    tmp_data = copy.deepcopy(dist_data)
 
-    while q :
-        x, y, dist = q.pop()
+    for virus in combi : 
+        x, y = virus
+        dist = 0
+        q.append((x,y,0))
+        tmp_data[x][y] = 0 # 활성 바이러스들
+
+    cnt, max_value = 0, -1e9
+    while q:
+        x, y, dist = q.popleft()
+        cnt += 1
+
+        if tmp_data[x][y] != '+' : # 비활성 바이러스를 만나면은?
+            tmp_data[x][y] = str(dist)
+            max_value = max(dist, max_value)
+            
         for i in range(4):
             nx, ny = x + dx[i], y + dy[i]
-            if not(0<=nx<n and 0<=ny<n) : continue
-            if lab[nx][ny] == 0 : 
-                q.append((nx,ny,dist+1))
-                lab[nx][ny] = dist + 1
-                
-    for i in lab : print(i)
-    print()
+            if not (0<=nx<n and 0<=ny<n) : continue
+            if tmp_data[nx][ny] == '-' : continue
 
-        
+            if tmp_data[nx][ny] == '*' : # 비활성 바이러스를 만났을 때
+                tmp_data[nx][ny] = '+' # 활성으로 변해버린 바이러스
+                q.append((nx,ny,dist+1))
+                continue
+            if tmp_data[nx][ny] == ' ':
+                tmp_data[nx][ny] = str(dist+1)
+                q.append((nx,ny,dist+1))
+    if check == cnt : ans.append(max_value)
+    else : ans.append(-1)
+
+print(min(ans))
+
 
