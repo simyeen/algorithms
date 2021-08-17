@@ -22,7 +22,7 @@ for i in range(n):
             blocks.append((i,j))
             dist_data[i][j] = '-'
         else : check += 1
-check += len(virus)
+check += len(virus) # 바이러스와 빈칸의 합.
 
 ans = []
 combination = list(combinations(virus, m))
@@ -39,7 +39,7 @@ for combi in combination:
     cnt, max_value = 0, -1e9
     while q:
         x, y, dist = q.popleft()
-        cnt += 1
+        cnt += 1 # 우선적으로 바이러스만큼 찬다. 
 
         if tmp_data[x][y] != '+' : # 비활성 바이러스를 만나면은?
             tmp_data[x][y] = str(dist)
@@ -60,6 +60,5 @@ for combi in combination:
     if check == cnt : ans.append(max_value)
     else : ans.append(-1)
 
-print(min(ans))
-
-
+if max(ans) == -1 : print(-1)
+else : print(min(ans))
