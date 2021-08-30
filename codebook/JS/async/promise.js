@@ -8,4 +8,11 @@ const promise = new Promise((resolve, reject) => {
   }, 2000);
 });
 
-// 2. 컨슈머
+// 2. 컨슈머 then, catch, finally
+
+const getHen = () =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("닭");
+    }, 1000);
+  });
