@@ -20,3 +20,5 @@ class UserStorage{
 
 }
 
+
+const httpRe = new XMLHttpRequest()

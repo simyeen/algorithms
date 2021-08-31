@@ -16,3 +16,5 @@ const getHen = () =>
       resolve("닭");
     }, 1000);
   });
+
+const getEgg = (hen) => {};
