@@ -23,9 +23,7 @@ selectSort(arr);
 console.log("after", arr);
 
 // function bubbleSort(arr) {
-//   let noSwaps;
 //   for (let i = arr.length; i > 0; i--) {
-//     noSwaps = true;
 //     for (let j = 0; j < i - 1; j++) {
 //       if (arr[j] > arr[j + 1]) {
 //         let temp = arr[j];
@@ -33,8 +31,7 @@ console.log("after", arr);
 //         arr[j + 1] = temp;
 //         noSwaps = false;
 //       }
-//     }
-//     if (noSwaps) break;
+//     else{ break}
 //   }
 //   console.log(arr);
 //   return arr;
