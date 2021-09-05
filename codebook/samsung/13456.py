@@ -18,3 +18,4 @@ for person in arr:
     data.append(tmp)
 
 print(len(arr) + sum(data))
+
