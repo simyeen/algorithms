@@ -27,11 +27,10 @@ def solution(p):
         u_list.append(u)
         if len(v) == 0 : break
         string = v
-        
-    print(u_list)    
+
     for s_index in range(len(u_list)-1, -1, -1):
         string = u_list[s_index]
-        print(check2(string))
+        
         if check2(string) : answer = string + answer # 문제 없으면 앞에 붙이기.
         else : 
             if len(string) == 2: 
@@ -44,10 +43,8 @@ def solution(p):
             for i in range(len(string_list)): 
                 if string_list[i] == ')' : string_list[i] = '('
                 else : string_list[i] = ')'
-            print(1,''.join(string_list) )
             answer = '(' + answer + ')' + ''.join(string_list) 
 
-        print(string, answer)
     return answer
 
 p = '()))((()'
