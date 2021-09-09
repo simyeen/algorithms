@@ -1,6 +1,4 @@
 # 추석 트래픽문제.
-
-
 def check_time(check_time, target): 
 
     t_start,t_end = target
