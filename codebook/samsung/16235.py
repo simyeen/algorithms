@@ -38,7 +38,7 @@ for _ in range(k):
             else : summer += int(age/2)
         energes[x][y] += summer
         for tmp in spring_list: heapq.heappush(tree, tmp)
-
+        
     # 가을에 번식한다.    
     new_trees = dict()
     for key in trees : new_trees[key] = trees[key]
