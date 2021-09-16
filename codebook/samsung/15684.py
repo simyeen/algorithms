@@ -1,10 +1,9 @@
-import copy
+# 사다리 문제 => timeout
+
 from itertools import combinations
 
 N, M, H = map(int, input().split())
-
 n, m = H, N # n은 행의 개수, m은 열의 개수
-
 data = [[0 for _ in range(m)] for _ in range(n)]
 
 cnt = 1
@@ -19,12 +18,11 @@ for i in range(n):
     for j in range(m-1):
         if data[i][j] == 0 and data[i][j+1] == 0 : candidates.append((i,j))
 
-def check(new_arr, n, m) : # cheking i t0 i
+def check(new_arr, n, m) : 
 
     starts = [(0,col) for col in range(m)]
-    end = [i for i in range(m)]
+    end, ans = [i for i in range(m)], []
 
-    ans = []
     for start in starts:
         x, y = start
         flag = False
@@ -54,18 +52,21 @@ def check(new_arr, n, m) : # cheking i t0 i
     return False
 
 def new_ladders(data, combi, cnt): # 새로운 가로선 추가된 배열 return
-    if len(combi) == 0: return data
     for a,b in combi: # i가 2이상 일때 검사된다.
         if (a, b+1) in combi: return []
 
-    new_arr = copy.deepcopy(data)
+    new_arr = [item[:] for item in data]    
     for i in range(len(combi)):
         a, b = combi[i]
         new_arr[a][b], new_arr[a][b+1] = i+cnt, i+cnt
 
     return new_arr
 
-for i in range(4):
+if check(data, n, m) == True:
+    print(0)
+    exit()
+
+for i in range(1, 4):
     combination = list(combinations(candidates,i))
     for combi in combination:
         new_arr = new_ladders(data,combi, cnt)
