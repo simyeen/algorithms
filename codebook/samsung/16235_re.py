@@ -50,7 +50,7 @@ for _ in range(k):
                     nx, ny = i+dx[k], j+dy[k]
                     if not(0<=nx<n and 0<=ny<n) : continue
                     trees[nx][ny].append(1)
-  
+                    
     for i in range(n):
         for j in range(n): energy[i][j] += A[i][j]
                     
