@@ -20,6 +20,7 @@ for i in range(1, v+1):
 
 for i in range(e):
     a, b = map(int, input().split())
+    union_parent(parent, a, b)
 
 for i in range(1, v+1):
     print(find_parent(parent, i), end= '')
