@@ -108,16 +108,3 @@ for d, s in blizards:
 
 print(ans)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
