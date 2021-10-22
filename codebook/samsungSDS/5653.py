@@ -13,7 +13,7 @@ for test_case in range(1, T + 1):
         for y in range(m):
             if data[x][y] == 0: continue
             value = data[x][y]
-            key = str(x) + str(y)
+            key = (x, y)
             dict[key] = [x, y, value*2, value, True]
 
     for i in range(k):
@@ -29,18 +29,19 @@ for test_case in range(1, T + 1):
             if lifetime == value: # 활성화 => 확장하기.
                 for i in range(4):
                     nx, ny = x+dx[i], y+dy[i]
-                    new_key = str(nx) + str(ny)
+                    new_key = (nx, ny)
                     if new_key in dict: continue
                     if new_key not in new_cell:
                         new_cell[new_key] = [nx, ny, value*2, value, True]
                     else: # 추가하면서 중복될 때는 value로 비교하기.
-                        if value > new_cell[new_key][1]:
+                        if value > new_cell[new_key][3]:
                             new_cell[new_key] = [nx, ny, value*2, value, True]
 
             if lifetime > 0:
                 dict[key] = [x, y, lifetime-1, value, True]
 
-        for key in new_cell: dict[key] = new_cell[key]
+        for key in new_cell:
+            dict[key] = new_cell[key]
 
     ans = 0
     for key in dict:
