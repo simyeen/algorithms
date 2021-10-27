@@ -19,8 +19,8 @@ for combination in d_combination:
             if 0<= i + d1 + d2 <= n-1:
                 if 0<= j-d1 < j and j < j+d2 <= n-1 : five_list.append((i,j))
     
-    arr = [[0 for _ in range(n)] for _ in range(n)]
     for x,y in five_list:
+        arr = [[0 for _ in range(n)] for _ in range(n)]
         edges = set()
 
         for i in range(d1+1): edges.add((x+i,y-i))
