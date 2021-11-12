@@ -1,30 +1,39 @@
-def sorted_data(arr):
-    new_data = [[0 for _ in range(m)] for _ in range(n)]
+def check(visited, n, m):
+    for i in range(n):
+        for j in range(m):
+            if visited[i][j] == False:
+                return False
+    return True
 
-    tmp_data = []
-    for j in range(m):
-        tmp = ''
-        for i in range(n):
-            if arr[i][j] != 0:
-                tmp += str(arr[i][j])
-        tmp = tmp.zfill(n)
-        tmp_data.append(list(tmp))
+def solution(rows, columns):
+    n, m = rows, columns
 
-    print(tmp_data)
-    for i in range(m):
-        for j in range(n):
-            print(i,j)
-            new_data[j][i] = int(tmp_data[i][j])
+    visited = [[False for _ in range(m)] for _ in range(n)]
+    data = [[0 for _ in range(m)] for _ in range(n)]
 
-    return new_data
+    x, y, cnt = 0, 0, 1
+    data[x][y] = cnt
 
+    q = [(x,y)]
+    while True:
+        x, y = q.pop()
 
-n, m = 4,3
-arr = [
-    [0,1,0],
-    [0,0,0],
-    [1,0,0],
-    [0,0,0]
-]
+        # nx, ny 배정하기 전에 체크 하기.
+        if check(visited, n, m):
+            return data
 
-print(sorted_data(arr))
+        if cnt % 2 == 0:
+            nx, ny = (x+1) % n, y
+        else:
+            nx, ny = x, (y+1) % m
+
+        cnt += 1
+        # 이동하기 전에 검사 => 다시 처음으로 돌아올 때
+        if (nx, ny) == (0, 0):
+            if data[0][0] % 2 == cnt % 2:
+                return data
+
+        q.append((nx, ny))
+        data[nx][ny] = cnt
+        visited[nx][ny] = True
+
